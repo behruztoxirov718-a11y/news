@@ -1,0 +1,36 @@
+name: Auto News Scraper 24/7
+
+on:
+  schedule:
+    # Har 30 daqiqada avtomatik ishga tushadi
+    - cron: '*/30 * * * *'
+  # Qo'lda sinab ko'rish tugmasi
+  workflow_dispatch:
+
+jobs:
+  scrape-and-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repozitoriyni yuklash
+        uses: actions/checkout@v4
+
+      - name: Python o'rnatish
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Kutubxonalarni o'rnatish
+        run: |
+          pip install -r news-aggregator/scraper/requirements.txt
+
+      - name: Firebase kalitini xavfsiz tiklash
+        env:
+          FIREBASE_KEY: ${{ secrets.FIREBASE_KEY }}
+        run: |
+          echo "$FIREBASE_KEY" > news-aggregator/scraper/serviceAccountKey.json
+
+      - name: Yangiliklarni yig'ish va bazaga yozish
+        run: |
+          cd news-aggregator/scraper
+          python run_once.py
