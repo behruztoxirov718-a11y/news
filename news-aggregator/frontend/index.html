@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <!-- Telefonda chiroyli ko'rinishi uchun muhim meta teg -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart News Hub - Barcha yangiliklar bir joyda</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Font (Chiroyli shrift) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 1. Header (Saytning yuqori qismi) -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <h1>Smart<span>News</span></h1>
+      </div>
+      <div class="live-badge">
+        <span class="pulse-dot"></span> Jonli efir
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. 10 ta Kategoriya paneli (Mobilga mos suriladigan chips) -->
+  <section class="categories-wrapper">
+    <div class="container">
+      <div class="categories-list" id="categoryList">
+        <button class="cat-btn active" data-category="all">Barchasi</button>
+        <button class="cat-btn" data-category="ai">Sun'iy Intellekt (AI)</button>
+        <button class="cat-btn" data-category="crypto">Kripto & Web3</button>
+        <button class="cat-btn" data-category="it">IT & Dasturlash</button>
+        <button class="cat-btn" data-category="startup">Startap & Biznes</button>
+        <button class="cat-btn" data-category="security">Kiberxavfsizlik</button>
+        <button class="cat-btn" data-category="gadgets">Gadjetlar</button>
+        <button class="cat-btn" data-category="science">Fan & Kosmos</button>
+        <button class="cat-btn" data-category="gaming">Gaming & O'yinlar</button>
+        <button class="cat-btn" data-category="design">Dizayn & 3D</button>
+        <button class="cat-btn" data-category="auto">Avto & Texno</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Asosiy Yangiliklar konteyneri -->
+  <main class="container main-content">
+    <!-- Yangiliklar kartochkalari shu yerga JS orqali avtomatik tushadi -->
+    <div class="news-grid" id="newsGrid">
+      <div class="loading-spinner">Yangiliklar yuklanmoqda...</div>
+    </div>
+  </main>
+
+  <!-- 4. "Batafsil" ko'rinishi (Modal / Pop-up) -->
+  <div class="modal-backdrop" id="newsModal">
+    <div class="modal-box">
+      <button class="close-btn" id="closeModalBtn">&times;</button>
+      
+      <div class="modal-img-container">
+        <img id="modalImage" src="" alt="News Image">
+        <span class="modal-cat-tag" id="modalCategory">Kategoriya</span>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-meta">
+          <span id="modalSource">Manba</span> • <span id="modalTime">Vaqti</span>
+        </div>
+        <h2 id="modalTitle" class="modal-title">Yangilik sarlavhasi</h2>
+        <div id="modalContent" class="modal-text">
+          <!-- To'liq matn bu yerda chiqadi -->
+        </div>
+        <a id="modalLink" href="#" target="_blank" class="read-source-btn">
+          Asl manbada o'qish ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase va asosiy skriptlar (keyingi qadamlarda ulaymiz) -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
